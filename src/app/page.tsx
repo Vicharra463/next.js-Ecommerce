@@ -1,5 +1,5 @@
 // app/page.tsx
-import Image from "next/image";
+import Image from 'next/image';
 
 type Product = {
   id: number;
@@ -16,9 +16,15 @@ type Product = {
 
 async function getProducts(): Promise<Product[]> {
   try {
-    const res = await fetch("https://fakestoreapi.com/products", {});
-    const data = res.json();
-    console.log("Respuesta positiva de la api" )
+    const res = await fetch("https://fakestoreapi.com/products");
+    
+    // Verificar si la respuesta es exitosa
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    
+    const data = await res.json(); // ← Agregado await aquí
+    console.log("Respuesta positiva de la api");
     return data;
   } catch (error) {
     console.error('Error en cargar la api:', error);
@@ -85,7 +91,7 @@ export default async function Home() {
                 {product.category}
               </p>
               
-              <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200">
+              <button className="cursor-pointer w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200">
                 Agregar al Carrito
               </button>
             </div>
