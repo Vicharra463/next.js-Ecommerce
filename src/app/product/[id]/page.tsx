@@ -1,10 +1,14 @@
-
 import { getProductsbyid } from "@/app/types/types";
 import { productid } from "@/app/types/types";
 import Image from "next/image";
 import Boton from "@/Components/boton";
-export default async function ProductPage({params,}: {params: Promise<{ id: string }> ;}) {
-   const resolvedParams = await params; 
+import Link from "next/link";
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const resolvedParams = await params;
   const numero = Number(resolvedParams.id);
   const productos: productid = await getProductsbyid(numero);
   return (
@@ -13,6 +17,70 @@ export default async function ProductPage({params,}: {params: Promise<{ id: stri
         key={productos.id}
         className="p-8 max-w-7xl mx-auto border-2 border-gray-300 bg-white rounded-lg shadow-lg "
       >
+        <nav aria-label="Navegación de migas de pan" className="mb-8">
+          <ol className="flex items-center space-x-2 text-sm">
+            <li>
+              <Link
+                href="/"
+                className="text-gray-500 hover:text-blue-600 transition-colors duration-200 flex items-center"
+              >
+                <svg
+                  className="w-4 h-4 mr-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+                Inicio
+              </Link>
+            </li>
+
+            <li className="flex items-center">
+              <svg
+                className="w-4 h-4 text-gray-400 mx-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <Link
+                href="/product"
+                className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
+              >
+                Productos
+              </Link>
+            </li>
+
+            <li className="flex items-center">
+              <svg
+                className="w-4 h-4 text-gray-400 mx-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <Link
+                href={`/product?category=${encodeURIComponent(
+                  productos.category
+                )}`}
+                className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
+              >
+                {productos.category}
+              </Link>
+            </li>
+          </ol>
+        </nav>
         <div className="flex gap-8">
           <div className="flex flex-col items-center flex-1 w-[350px] h-[500px] overflow-hidden bg-white">
             <Image
@@ -61,7 +129,7 @@ export default async function ProductPage({params,}: {params: Promise<{ id: stri
             </div>
             <div className="border-[2px] border-gray-300 mb-[15px]"></div>
 
-            <p className="text-gray-800 mb-4 leading-relaxed">
+            <p className="text-gray-800 mb-4 leading-relaxed font-ex">
               {productos.description}
             </p>
             <div className="border-[2px] border-gray-300 mb-[15px]"></div>
@@ -71,9 +139,9 @@ export default async function ProductPage({params,}: {params: Promise<{ id: stri
               price={productos.price}
               image={productos.image}
             />
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
