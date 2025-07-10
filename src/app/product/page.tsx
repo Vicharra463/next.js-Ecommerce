@@ -21,7 +21,7 @@ export default async function Home() {
     <li>
       <Link 
         href="/" 
-        className="text-gray-500 hover:text-blue-600 transition-colors duration-200 flex items-center"
+        className="text-gray-500 hover:text-amber-300 transition-colors duration-200 flex items-center"
       >
         <svg 
           className="w-4 h-4 mr-1" 
@@ -46,7 +46,7 @@ export default async function Home() {
       </svg>
       <Link 
         href="/product" 
-        className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
+        className="text-gray-500 hover:text-amber-300 transition-colors duration-200"
       >
         Productos
       </Link>

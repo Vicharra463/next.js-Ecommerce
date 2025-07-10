@@ -20,6 +20,7 @@ export type productid = {
   image: string;
 };
 
+
 export function savelocal(producto: Props): object {
   localStorage.setItem("user", JSON.stringify(producto));
   return {

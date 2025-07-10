@@ -25,11 +25,12 @@ export default function Boton({ id, title, price, image }: Props) {
     }
   };
 
+  
   return (
     <div className="flex items-center justify-between mb-6">
       <button
         type="button"
-        className="flex items-center gap-2  mt-[40px]  px-4 py-2 bg-blue-500 text-white rounded-lg cursor-pointer hover:bg-blue-800"
+        className="flex items-center gap-2  mt-[40px]  px-4 py-2 bg-amber-400 text-white rounded-lg cursor-pointer hover:bg-blue-800"
         onClick={() => {
           console.log(savelocal(producto));
         }}

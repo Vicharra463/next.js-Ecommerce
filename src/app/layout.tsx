@@ -1,8 +1,7 @@
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
 import "./globals.css";
-
-//icono de la pagina: 
+import { ShoppingcartProvider } from "@/context/index"; 
 
 export const metadata = {
   title: 'Totoro Shop',
@@ -12,7 +11,6 @@ export const metadata = {
   ],
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="">
+      <ShoppingcartProvider>
         <Header />
         {children}
         <Footer />
+      </ShoppingcartProvider>
       </body>
     </html>
   );
